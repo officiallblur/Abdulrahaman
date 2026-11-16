@@ -1,0 +1,46 @@
+import React from 'react';
+import { motion } from 'framer-motion';
+
+interface ContactButtonProps {
+  onClick?: () => void;
+  className?: string;
+  href?: string;
+}
+
+export const ContactButton: React.FC<ContactButtonProps> = ({
+  onClick,
+  className = '',
+  href = '#contact',
+}) => {
+  const content = (
+    <motion.button
+      type="button"
+      whileHover={{ scale: 1.04 }}
+      whileTap={{ scale: 0.97 }}
+      transition={{ duration: 0.2 }}
+      onClick={onClick}
+      style={{
+        background: 'linear-gradient(123deg, #18011F 7%, #B600A8 37%, #7621B0 72%, #BE4C00 100%)',
+        boxShadow: '0px 4px 4px rgba(181, 1, 167, 0.25), inset 4px 4px 12px #7721B1',
+        outline: '2px solid white',
+        outlineOffset: '-3px',
+      }}
+      className={`rounded-full text-white font-medium uppercase tracking-widest text-xs sm:text-sm md:text-base px-8 py-3 sm:px-10 sm:py-3.5 md:px-12 md:py-4 inline-flex items-center justify-center transition-all cursor-pointer select-none ${className}`}
+    >
+      Contact Me
+    </motion.button>
+  );
+
+  if (href && !onClick) {
+    return (
+      <a href={href} className="inline-block no-underline">
+        {content}
+      </a>
+    );
+  }
+
+  return content;
+};
+
+export default ContactButton;
+
